@@ -1,0 +1,284 @@
+<!doctype html>
+<title>jigsass-utils-position</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="style.css?05" rel="stylesheet">
+<link href="jigsass-logo.png" rel="shortcut icon">
+<script type="text/javascript">WebFontConfig={google:{families:["Roboto:400,100,300,500:latin"]}},function(){var e=document.createElement("script");e.src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js",e.type="text/javascript",e.async="true";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}();</script>
+<script>examples={"base":"","target":"_self","css":["assets/sg.css"],"js":[],"bodyjs":[],"htmlcss":"background:none;border:0;clip:auto;display:block;height:auto;margin:0;padding:0;position:static;width:auto","bodycss":"background:none;border:0;clip:auto;display:block;height:auto;margin:0;padding:0;position:static;width:auto"};</script>
+
+<header>
+	<nav>
+		<img src="jigsass-logo.png" alt="jigsass-utils-position">
+		
+	<ul>
+		
+				<li>
+					<a href="#u-pos-position"><span>u-pos (Position)</span></a>
+					
+	<ul>
+		
+				<li>
+					<a href="#introduction"><span>Introduction</span></a>
+					
+				</li>
+				
+				<li>
+					<a href="#u-pos--a-absolute"><span>u-pos--a (absolute)</span></a>
+					
+				</li>
+				
+				<li>
+					<a href="#u-pos--f-fixed"><span>u-pos--f (fixed)</span></a>
+					
+				</li>
+				
+				<li>
+					<a href="#u-pos--r-relative"><span>u-pos--r (relative)</span></a>
+					
+				</li>
+				
+				<li>
+					<a href="#u-pos--s-static"><span>u-pos--s (static)</span></a>
+					
+				</li>
+				
+				<li>
+					<a href="#u-pos--center"><span>u-pos--center</span></a>
+					
+				</li>
+				
+				<li>
+					<a href="#u-pos--stretch"><span>u-pos--stretch</span></a>
+					
+				</li>
+				
+	</ul>
+	
+				</li>
+				
+	</ul>
+	
+	</nav>
+</header>
+
+<main>
+	
+		<section id="u-pos-position">
+			<h2>u-pos (Position)</h2>
+			<div>
+				
+				
+		<section id="introduction">
+			<h3>Introduction</h3>
+			<div>
+				<p><a href="https://npmjs.org/package/jigsass-utils-position"><img src="https://badge.fury.io/js/jigsass-utils-position.svg" alt="NPM version"></a>
+<a href="https://david-dm.org/TxHawks/jigsass-utils-position"><img src="https://david-dm.org/TxHawks/jigsass-utils-position.svg?theme=shields.io" alt="Dependency Status"></a></p>
+<p>A collection of dynamically generated <code>position</code> utility classes.</p>
+<p>Class names follow the <a href="http://docs.emmet.io/cheat-sheet/">Emmet</a> abbreviation
+syntax, with colons (&#39;:&#39;) replaced by two dashes (<code>--</code>) to follow BEM naming
+conventions (It modifiies the user agent&#39;s default position for the element).
+E.g., the <code>position: absolute</code> utility class name is <code>.u-pos--a</code>.</p>
+<h4 id="available-classes">Available classes</h4>
+<ul>
+<li><code>.u-pos--a</code> (position: absolute)</li>
+<li><code>.u-pos--f</code> (position: fixed)</li>
+<li><code>.u-pos--r</code> (position: relative)</li>
+<li><code>.u-pos--s</code> (position: static)</li>
+</ul>
+<p>Additionally, JigSass Position provides the following helpers:</p>
+<ul>
+<li><code>.u-pos--center</code> Used for vertically and horizontally centering <code>absolute</code> and <code>fixed</code>
+positioned elements inside their first non-statically positioned ancestor (or <code>window</code>).
+Will also work for <code>relative</code> positioned elements inside containers with explicit heights.</li>
+<li><code>.u-pos--stretch</code> Used for stretching <code>absolute</code> and <code>fixed</code> positioned elements to the
+dimensions of their first non-statically positioned ancestor (or <code>window</code>).</li>
+</ul>
+<h4 id="installation">Installation</h4>
+<p>Using npm:</p>
+<pre><code class="lang-sh">npm i -S jigsass-utils-position
+</code></pre>
+<h4 id="usage">Usage</h4>
+<p>Import JigSass Utils Position into your main scss file near its very end, together with all
+other utilities (utilities should always be the last to be imported).</p>
+<pre><code class="lang-scss">@import &#39;path/to/jigsass-utils-position/scss/index&#39;;
+</code></pre>
+<p>Like all other JigSass Utils, JigSass Position does not automatically generate any CSS
+when imported. You would need to explicitly indicate that each individual class
+should actually be generated in each component or object it is used in
+(clarification: This will include style declarations inside <code>.foo</code> and .<code>bar</code>):</p>
+<pre><code class="lang-scss">// _c.foo.scss
+.foo {
+  @include jigsass-util(u-pos, $modifier: a); // &lt;-- position: absolute
+
+  ...
+}
+</code></pre>
+<pre><code class="lang-scss">// _c.bar.scss
+.bar {
+  @include jigsass-util(u-pos, $modifier: r);  // &lt;-- position: relative
+  @include jigsass-util(
+    u-pos,
+    $modifier: f,
+    $from: large
+  ); // &lt;-- position: fixed, from large bp and on.
+
+  ...
+}
+</code></pre>
+<p>Doing so helps us a great deal with portability, as no matter where we import component or object
+partials, the correct utility classes will be generated. Think of it as a poor man&#39;s dependency
+management.</p>
+<p>Developer communication is also assisted by including &quot;dependencies&quot; wherever they are required,
+as anyone going through a partial, can easily understand how it should be marked up with just a
+glance.</p>
+<p>As far as bloat goes, just don&#39;t worry about it - the actual styles will only be generated once,
+at the location in the cascade where the Jigsass Position partial was imported into the main file.</p>
+<p>JigSass Position classes are responsive-enabled, using <a href="https://txhawks.github.io/jigsass-tools-mq/">JigSass MQ</a>
+and the breakpoints defined in the <a href="https://txhawks.github.io/jigsass-tools-mq/#variable-jigsass-breakpoints">$jigsass-breakpoints</a> variable.</p>
+<p>Based on the breakpoint arguments passed to <code>jigsass-util</code> when including a position class, responsive
+modifiers are generated according to the following logic:</p>
+<pre><code class="lang-scss">.u-pos--&lt;modifier&gt;[-[-from-&lt;breakpoint-name&gt;][-until-&lt;breakpoint-name&gt;][-misc-&lt;breakpoint-name&gt;]]
+</code></pre>
+<p>So, assuming the <code>medium</code>, <code>large</code> and <code>landscape</code> breakpoints are defined in <code>$jigsass-breakpoints</code>
+as <code>600px</code>, <code>1024px</code> and <code>(orientation: landscape)</code> respectively,</p>
+<pre><code class="lang-scss">@include jigsass-util(u-pos, $modifier: f);
+</code></pre>
+<p>will generate the <code>.u-pos--f</code> class, which is not limited to any media-query.</p>
+<pre><code class="lang-scss">@include jigsass-util(u-pos, $modifier: f, $until: medium);
+</code></pre>
+<p>will generate the <code>.u-pos--f--until-medium</code> class, which will be in effect at
+<code>(max-width: 37.49em)</code> and will override styles in the default class until that point.</p>
+<pre><code class="lang-scss">@include jigsass-util(u-pos, $modifier: f, $from: large, $misc: landscape);
+</code></pre>
+<p>will generate the <code>.u-pos--f--from-large-when-landscape</code> class, which will go into
+effect at <code>(min-width: 64em) and (orientation: landscape)</code> and will override styles in the default
+class under these  conditions.</p>
+<p><strong>License:</strong> MIT</p>
+
+				
+			</div>
+		</section>
+		
+		<section id="u-pos--a-absolute">
+			<h3>u-pos--a (absolute)</h3>
+			<div>
+				<p>A util to modify an element&#39;s <code>position</code> property value to
+<code>absolute</code>.</p>
+<h4 id="include-with-">Include with:</h4>
+<pre><code class="lang-scss">@include jigsass-util(u-pos, $modifier: absolute[, $from, $until, $misc]);
+</code></pre>
+<h4 id="example">Example</h4>
+<pre><code class="lang-example:html">&lt;div class=&#39;fpo u-pos--a&#39;&gt;
+  This div position is set to: &lt;em&gt;absolute&lt;/em&gt;.
+&lt;/div&gt;
+</code></pre>
+
+				
+			</div>
+		</section>
+		
+		<section id="u-pos--f-fixed">
+			<h3>u-pos--f (fixed)</h3>
+			<div>
+				<p>A util to modify an element&#39;s <code>position</code> property value to
+<code>fixed</code>.</p>
+<h4 id="include-with-">Include with:</h4>
+<pre><code class="lang-scss">@include jigsass-util(u-pos, $modifier: fixed[, $from, $until, $misc]);
+</code></pre>
+<h4 id="example">Example</h4>
+<pre><code class="lang-example:html">&lt;div class=&#39;fpo u-pos--f&#39;&gt;
+  This div position is set to: &lt;em&gt;fixed&lt;/em&gt;.
+&lt;/div&gt;
+</code></pre>
+
+				
+			</div>
+		</section>
+		
+		<section id="u-pos--r-relative">
+			<h3>u-pos--r (relative)</h3>
+			<div>
+				<p>A util to modify an element&#39;s <code>position</code> property value to
+<code>relative</code>.</p>
+<h4 id="include-with-">Include with:</h4>
+<pre><code class="lang-scss">@include jigsass-util(u-pos, $modifier: relative[, $from, $until, $misc]);
+</code></pre>
+<h4 id="example">Example</h4>
+<pre><code class="lang-example:html">&lt;div class=&#39;fpo u-pos--r&#39;&gt;
+  This div position is set to: &lt;em&gt;relative&lt;/em&gt;.
+&lt;/div&gt;
+</code></pre>
+
+				
+			</div>
+		</section>
+		
+		<section id="u-pos--s-static">
+			<h3>u-pos--s (static)</h3>
+			<div>
+				<p>A util to modify an element&#39;s <code>position</code> property value to
+<code>static</code>.</p>
+<h4 id="include-with-">Include with:</h4>
+<pre><code class="lang-scss">@include jigsass-util(u-pos, $modifier: static[, $from, $until, $misc]);
+</code></pre>
+<h4 id="example">Example</h4>
+<pre><code class="lang-example:html">&lt;div class=&#39;fpo u-pos--s&#39;&gt;
+  This div position is set to: &lt;em&gt;static&lt;/em&gt;.
+&lt;/div&gt;
+</code></pre>
+
+				
+			</div>
+		</section>
+		
+		<section id="u-pos--center">
+			<h3>u-pos--center</h3>
+			<div>
+				<p>A utility class for vertically and horizontally centering <code>absolute</code> and <code>fixed</code>
+positioned elements inside their first non-statically positioned ancestor (or <code>window</code>).
+Will also work for <code>relative</code> positioned elements inside containers with explicit heights.</p>
+<h4 id="include-with-">Include with:</h4>
+<pre><code class="lang-scss">@include jigsass-util(u-pos, $modifier: [, $from, $until, $misc]);
+</code></pre>
+<h4 id="example">Example</h4>
+<pre><code class="lang-example:html">&lt;div class=&#39;has-fpo--fixed&#39;&gt;
+  &lt;div class=&#39;[ fpo fpo--fixed ]  u-pos--center&#39;&gt;
+    This div is horizontally and vertically centered inside its container.
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+				
+			</div>
+		</section>
+		
+		<section id="u-pos--stretch">
+			<h3>u-pos--stretch</h3>
+			<div>
+				<p>A utility class for stretching <code>absolute</code> and <code>fixed</code> positioned elements to the dimensions of
+their first non-statically positioned ancestor (or <code>window</code>).</p>
+<h4 id="include-with-">Include with:</h4>
+<pre><code class="lang-scss">@include jigsass-util(u-pos, $modifier: [, $from, $until, $misc]);
+</code></pre>
+<h4 id="example">Example</h4>
+<pre><code class="lang-example:html">&lt;div class=&#39;has-fpo--fixed&#39;&gt;
+  &lt;div class=&#39;[ fpo fpo--fixed ]  u-pos--stretch&#39;&gt;
+    This div is stretched to cover its container.
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+				
+			</div>
+		</section>
+		
+			</div>
+		</section>
+		
+	<footer>Last modified Saturday, 9 April 2016 16:03</footer>
+</main>
+<script src="prism.js"></script>
+<script src="examples.js"></script>
+<script src="script.js"></script>
+
