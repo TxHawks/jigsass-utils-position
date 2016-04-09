@@ -1,0 +1,343 @@
+/* ---
+section: u-pos (Position)
+title: Introduction
+order: -10
+---
+
+[![NPM version][npm-image]][npm-url]
+[![Dependency Status][daviddm-image]][daviddm-url]
+
+A collection of dynamically generated `position` utility classes.
+
+Class names follow the [Emmet](http://docs.emmet.io/cheat-sheet/) abbreviation
+syntax, with colons (':') replaced by two dashes (`--`) to follow BEM naming
+conventions (It modifiies the user agent's default position for the element).
+E.g., the `position: absolute` utility class name is `.u-pos--a`.
+
+#### Available classes
+  - `.u-pos--a` (position: absolute)
+  - `.u-pos--f` (position: fixed)
+  - `.u-pos--r` (position: relative)
+  - `.u-pos--s` (position: static)
+
+Additionally, JigSass Position provides the following helpers:
+  - `.u-pos--center` Used for vertically and horizontally centering `absolute` and `fixed`
+    positioned elements inside their first non-statically positioned ancestor (or `window`).
+    Will also work for `relative` positioned elements inside containers with explicit heights.
+  - `.u-pos--stretch` Used for stretching `absolute` and `fixed` positioned elements to the
+    dimensions of their first non-statically positioned ancestor (or `window`).
+
+
+#### Installation
+
+Using npm:
+
+```sh
+npm i -S jigsass-utils-position
+```
+
+#### Usage
+Import JigSass Utils Position into your main scss file near its very end, together with all
+other utilities (utilities should always be the last to be imported).
+
+```scss
+@import 'path/to/jigsass-utils-position/scss/index';
+```
+
+Like all other JigSass Utils, JigSass Position does not automatically generate any CSS
+when imported. You would need to explicitly indicate that each individual class
+should actually be generated in each component or object it is used in
+(clarification: This will include style declarations inside `.foo` and .`bar`):
+
+```scss
+// _c.foo.scss
+.foo {
+  @include jigsass-util(u-pos, $modifier: a); // <-- position: absolute
+
+  ...
+}
+```
+
+```scss
+// _c.bar.scss
+.bar {
+  @include jigsass-util(u-pos, $modifier: r);  // <-- position: relative
+  @include jigsass-util(
+    u-pos,
+    $modifier: f,
+    $from: large
+  ); // <-- position: fixed, from large bp and on.
+
+  ...
+}
+```
+
+Doing so helps us a great deal with portability, as no matter where we import component or object
+partials, the correct utility classes will be generated. Think of it as a poor man's dependency
+management.
+
+Developer communication is also assisted by including "dependencies" wherever they are required,
+as anyone going through a partial, can easily understand how it should be marked up with just a
+glance.
+
+As far as bloat goes, just don't worry about it - the actual styles will only be generated once,
+at the location in the cascade where the Jigsass Position partial was imported into the main file.
+
+
+JigSass Position classes are responsive-enabled, using [JigSass MQ](https://txhawks.github.io/jigsass-tools-mq/)
+and the breakpoints defined in the [$jigsass-breakpoints](https://txhawks.github.io/jigsass-tools-mq/#variable-jigsass-breakpoints) variable.
+
+Based on the breakpoint arguments passed to `jigsass-util` when including a position class, responsive
+modifiers are generated according to the following logic:
+
+```scss
+.u-pos--<modifier>[-[-from-<breakpoint-name>][-until-<breakpoint-name>][-misc-<breakpoint-name>]]
+```
+
+So, assuming the `medium`, `large` and `landscape` breakpoints are defined in `$jigsass-breakpoints`
+as `600px`, `1024px` and `(orientation: landscape)` respectively,
+
+```scss
+@include jigsass-util(u-pos, $modifier: f);
+```
+will generate the `.u-pos--f` class, which is not limited to any media-query.
+
+```scss
+@include jigsass-util(u-pos, $modifier: f, $until: medium);
+```
+
+will generate the `.u-pos--f--until-medium` class, which will be in effect at
+`(max-width: 37.49em)` and will override styles in the default class until that point.
+
+```scss
+@include jigsass-util(u-pos, $modifier: f, $from: large, $misc: landscape);
+```
+
+will generate the `.u-pos--f--from-large-when-landscape` class, which will go into
+effect at `(min-width: 64em) and (orientation: landscape)` and will override styles in the default
+class under these  conditions.
+
+
+**License:** MIT
+
+
+
+[npm-image]: https://badge.fury.io/js/jigsass-utils-position.svg
+[npm-url]: https://npmjs.org/package/jigsass-utils-position
+
+[daviddm-image]: https://david-dm.org/TxHawks/jigsass-utils-position.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/TxHawks/jigsass-utils-position
+*/
+.u-pos--a {
+  position: absolute;
+  /* ---
+section: u-pos (Position)
+title: u-pos--a (absolute)
+order: 1
+---
+A util to modify an element's `position` property value to
+`absolute`.
+
+#### Include with:
+
+```scss
+@include jigsass-util(u-pos, $modifier: absolute[, $from, $until, $misc]);
+```
+
+#### Example
+
+```example:html
+<div class='fpo u-pos--a'>
+  This div position is set to: <em>absolute</em>.
+</div>
+```
+  */
+}
+
+.u-pos--f {
+  position: fixed;
+  /* ---
+section: u-pos (Position)
+title: u-pos--f (fixed)
+order: 2
+---
+A util to modify an element's `position` property value to
+`fixed`.
+
+#### Include with:
+
+```scss
+@include jigsass-util(u-pos, $modifier: fixed[, $from, $until, $misc]);
+```
+
+#### Example
+
+```example:html
+<div class='fpo u-pos--f'>
+  This div position is set to: <em>fixed</em>.
+</div>
+```
+  */
+}
+
+.u-pos--r {
+  position: relative;
+  /* ---
+section: u-pos (Position)
+title: u-pos--r (relative)
+order: 3
+---
+A util to modify an element's `position` property value to
+`relative`.
+
+#### Include with:
+
+```scss
+@include jigsass-util(u-pos, $modifier: relative[, $from, $until, $misc]);
+```
+
+#### Example
+
+```example:html
+<div class='fpo u-pos--r'>
+  This div position is set to: <em>relative</em>.
+</div>
+```
+  */
+}
+
+.u-pos--s {
+  position: static;
+  /* ---
+section: u-pos (Position)
+title: u-pos--s (static)
+order: 4
+---
+A util to modify an element's `position` property value to
+`static`.
+
+#### Include with:
+
+```scss
+@include jigsass-util(u-pos, $modifier: static[, $from, $until, $misc]);
+```
+
+#### Example
+
+```example:html
+<div class='fpo u-pos--s'>
+  This div position is set to: <em>static</em>.
+</div>
+```
+  */
+}
+
+.u-pos--center {
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  /* ---
+section: u-pos (Position)
+title: u-pos--center
+order: 5 + 100
+---
+A utility class for vertically and horizontally centering `absolute` and `fixed`
+positioned elements inside their first non-statically positioned ancestor (or `window`).
+Will also work for `relative` positioned elements inside containers with explicit heights.
+
+#### Include with:
+
+```scss
+@include jigsass-util(u-pos, $modifier: [, $from, $until, $misc]);
+```
+
+#### Example
+
+```example:html
+<div class='has-fpo--fixed'>
+  <div class='[ fpo fpo--fixed ]  u-pos--center'>
+    This div is horizontally and vertically centered inside its container.
+  </div>
+</div>
+```
+*/
+}
+
+.u-pos--stretch {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  right: 0;
+  top: 0;
+  /* ---
+section: u-pos (Position)
+title: u-pos--stretch
+order: 6 + 100
+---
+A utility class for stretching `absolute` and `fixed` positioned elements to the dimensions of
+their first non-statically positioned ancestor (or `window`).
+
+#### Include with:
+
+```scss
+@include jigsass-util(u-pos, $modifier: [, $from, $until, $misc]);
+```
+
+#### Example
+
+```example:html
+<div class='has-fpo--fixed'>
+  <div class='[ fpo fpo--fixed ]  u-pos--stretch'>
+    This div is stretched to cover its container.
+  </div>
+</div>
+```
+*/
+}
+
+html {
+  font-size: 37.5%;
+}
+
+body {
+  font-size: 2.6666666667em;
+  line-height: 4rem;
+}
+
+html {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0 !important;
+}
+
+.has-fpo--fixed {
+  min-height: 20rem;
+  position: relative;
+}
+
+.fpo {
+  background-color: #09a5d9;
+  color: #fff;
+  padding: 1rem;
+}
+
+.fpo--fixed {
+  position: fixed;
+}
+
+figure,
+ul,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
