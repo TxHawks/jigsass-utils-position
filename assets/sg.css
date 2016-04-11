@@ -1,5 +1,5 @@
 /* ---
-section: u-pos (Position)
+section: Position Utils
 title: Introduction
 order: -10
 ---
@@ -131,7 +131,7 @@ class under these  conditions.
 .u-pos--a {
   position: absolute;
   /* ---
-section: u-pos (Position)
+section: Position Utils
 title: u-pos--a (absolute)
 order: 1
 ---
@@ -157,7 +157,7 @@ A util to modify an element's `position` property value to
 .u-pos--f {
   position: fixed;
   /* ---
-section: u-pos (Position)
+section: Position Utils
 title: u-pos--f (fixed)
 order: 2
 ---
@@ -183,7 +183,7 @@ A util to modify an element's `position` property value to
 .u-pos--r {
   position: relative;
   /* ---
-section: u-pos (Position)
+section: Position Utils
 title: u-pos--r (relative)
 order: 3
 ---
@@ -209,7 +209,7 @@ A util to modify an element's `position` property value to
 .u-pos--s {
   position: static;
   /* ---
-section: u-pos (Position)
+section: Position Utils
 title: u-pos--s (static)
 order: 4
 ---
@@ -239,7 +239,7 @@ A util to modify an element's `position` property value to
       -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   /* ---
-section: u-pos (Position)
+section: Position Utils
 title: u-pos--center
 order: 5 + 100
 ---
@@ -272,7 +272,7 @@ Will also work for `relative` positioned elements inside containers with explici
   right: 0;
   top: 0;
   /* ---
-section: u-pos (Position)
+section: Position Utils
 title: u-pos--stretch
 order: 6 + 100
 ---
