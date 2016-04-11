@@ -36,12 +36,12 @@
     "prepublish": "gulp prepublish"
   },
   "dependencies": {
-    "jigsass-tools-bidi": "^1.1.2",
-    "jigsass-tools-maps": "^1.0.6",
-    "jigsass-tools-mq": "^1.4.3",
-    "jigsass-tools-selectors": "^0.5.0",
-    "jigsass-tools-strings": "^1.1.1",
-    "jigsass-tools-typography": "^1.2.0"
+    "jigsass-tools-bidi": "^1.1.3",
+    "jigsass-tools-maps": "^1.0.7",
+    "jigsass-tools-mq": "^1.4.4",
+    "jigsass-tools-selectors": "^0.6.0",
+    "jigsass-tools-strings": "^1.2.0",
+    "jigsass-tools-typography": "^1.2.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.3",

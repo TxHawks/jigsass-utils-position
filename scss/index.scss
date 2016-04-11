@@ -29,7 +29,7 @@
 
 // stylelint-disable
 /* ---
-section: u-pos (Position)
+section: Position Utils
 title: Introduction
 order: -10
 ---
@@ -189,6 +189,9 @@ $_doclet-store: () !default;
 $_jigsass-util-position-i: 1;
 
 
+
+
+
 // -------------------------------------
 // Definitions
 // -------------------------------------
@@ -204,7 +207,7 @@ $_jigsass-util-position-i: 1;
       $_doclet-store: append($_doclet-store, $_doclet) !global;
       // stylelint-disable
 /* ---
-section: u-pos (Position)
+section: Position Utils
 title: u-pos--#{$jigsass-util-modifier}
 order: #{$_jigsass-util-position-i} + 100
 ---
@@ -244,7 +247,7 @@ Will also work for `relative` positioned elements inside containers with explici
       $_doclet-store: append($_doclet-store, $_doclet) !global;
       // stylelint-disable
 /* ---
-section: u-pos (Position)
+section: Position Utils
 title: u-pos--#{$jigsass-util-modifier}
 order: #{$_jigsass-util-position-i} + 100
 ---
@@ -287,7 +290,7 @@ their first non-statically positioned ancestor (or `window`).
       $_doclet-store: append($_doclet-store, $_doclet) !global;
       // stylelint-disable
 /* ---
-section: u-pos (Position)
+section: Position Utils
 title: u-pos--#{$jigsass-util-modifier} (#{map-get($_jigsass-position-mod-to-style, $jigsass-util-modifier)})
 order: #{$_jigsass-util-position-i}
 ---
