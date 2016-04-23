@@ -16,7 +16,7 @@
 
 @if (not mixin-exists(jigsass-define-util)) {
   @error '`jigsass-utils-position` has a dependency on `jigsass-tools-selectors`. ' +
-    'Please import it before importing this file.'
+    'Please import it before importing this file.';
 }
 
 
