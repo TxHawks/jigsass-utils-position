@@ -19,6 +19,7 @@ E.g., the `position: absolute` utility class name is `.u-pos--a`.
   - `.u-pos--f` (position: fixed)
   - `.u-pos--r` (position: relative)
   - `.u-pos--s` (position: static)
+  - `.u-pos--stck` (position: sticky)
 
 Additionally, JigSass Position provides the following helpers:
   - `.u-pos--center` Used for vertically and horizontally centering `absolute` and `fixed`
@@ -232,6 +233,33 @@ A util to modify an element's `position` property value to
   */
 }
 
+.u-pos--stck {
+  position: -webkit-sticky;
+  position: sticky;
+  /* ---
+section: Position Utils
+title: u-pos--stck (sticky)
+order: 5
+---
+A util to modify an element's `position` property value to
+`sticky`.
+
+#### Include with:
+
+```scss
+@include jigsass-util(u-pos, $modifier: sticky[, $from, $until, $misc]);
+```
+
+#### Example
+
+```example:html
+<div class='fpo u-pos--stck'>
+  This div position is set to: <em>sticky</em>.
+</div>
+```
+  */
+}
+
 .u-pos--center {
   left: 50%;
   top: 50%;
@@ -241,7 +269,7 @@ A util to modify an element's `position` property value to
   /* ---
 section: Position Utils
 title: u-pos--center
-order: 5 + 100
+order: 6 + 100
 ---
 A utility class for vertically and horizontally centering `absolute` and `fixed`
 positioned elements inside their first non-statically positioned ancestor (or `window`).
@@ -274,7 +302,7 @@ Will also work for `relative` positioned elements inside containers with explici
   /* ---
 section: Position Utils
 title: u-pos--stretch
-order: 6 + 100
+order: 7 + 100
 ---
 A utility class for stretching `absolute` and `fixed` positioned elements to the dimensions of
 their first non-statically positioned ancestor (or `window`).

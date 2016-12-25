@@ -44,6 +44,11 @@
 				</li>
 				
 				<li>
+					<a href="#u-pos--stck-sticky"><span>u-pos--stck (sticky)</span></a>
+					
+				</li>
+				
+				<li>
 					<a href="#u-pos--center"><span>u-pos--center</span></a>
 					
 				</li>
@@ -85,6 +90,7 @@ E.g., the <code>position: absolute</code> utility class name is <code>.u-pos--a<
 <li><code>.u-pos--f</code> (position: fixed)</li>
 <li><code>.u-pos--r</code> (position: relative)</li>
 <li><code>.u-pos--s</code> (position: static)</li>
+<li><code>.u-pos--stck</code> (position: sticky)</li>
 </ul>
 <p>Additionally, JigSass Position provides the following helpers:</p>
 <ul>
@@ -232,6 +238,24 @@ class under these  conditions.</p>
 			</div>
 		</section>
 		
+		<section id="u-pos--stck-sticky">
+			<h3>u-pos--stck (sticky)</h3>
+			<div>
+				<p>A util to modify an element&#39;s <code>position</code> property value to
+<code>sticky</code>.</p>
+<h4 id="include-with-">Include with:</h4>
+<pre><code class="lang-scss">@include jigsass-util(u-pos, $modifier: sticky[, $from, $until, $misc]);
+</code></pre>
+<h4 id="example">Example</h4>
+<pre><code class="lang-example:html">&lt;div class=&#39;fpo u-pos--stck&#39;&gt;
+  This div position is set to: &lt;em&gt;sticky&lt;/em&gt;.
+&lt;/div&gt;
+</code></pre>
+
+				
+			</div>
+		</section>
+		
 		<section id="u-pos--center">
 			<h3>u-pos--center</h3>
 			<div>
@@ -276,7 +300,7 @@ their first non-statically positioned ancestor (or <code>window</code>).</p>
 			</div>
 		</section>
 		
-	<footer>Last modified Saturday, 23 April 2016 18:12</footer>
+	<footer>Last modified Sunday, 25 December 2016 14:39</footer>
 </main>
 <script src="prism.js"></script>
 <script src="examples.js"></script>
