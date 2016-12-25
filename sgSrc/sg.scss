@@ -31,7 +31,7 @@
 // Styles
 // --------------------
 
-$_disp-mods: a f r s center stretch;
+$_disp-mods: a f r s stck center stretch;
 
 
 @each $mod in $_disp-mods {

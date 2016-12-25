@@ -49,6 +49,7 @@ E.g., the `position: absolute` utility class name is `.u-pos--a`.
   - `.u-pos--f` (position: fixed)
   - `.u-pos--r` (position: relative)
   - `.u-pos--s` (position: static)
+  - `.u-pos--stck` (position: sticky)
 
 Additionally, JigSass Position provides the following helpers:
   - `.u-pos--center` Used for vertically and horizontally centering `absolute` and `fixed`
@@ -179,6 +180,7 @@ $_jigsass-position-mod-to-style: (
   f: fixed,
   r: relative,
   s: static,
+  stck: sticky,
 );
 
 
